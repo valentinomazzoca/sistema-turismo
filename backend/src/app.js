@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const pool = require("./config/database");
 const app = express();
+const actividadesRoutes = require("./routes/actividades_routes");
 
 app.use(cors());
 app.use(express.json());
@@ -25,5 +26,5 @@ app.post("/api/actividades", async (req, res) => {
         res.status(500).json({ mensaje: "Error interno del servidor" });
     }
 });
-
+app.use("/api/actividades", actividadesRoutes);
 module.exports = app;
