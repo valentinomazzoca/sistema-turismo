@@ -1,4 +1,4 @@
-const actividadModel = require("../models/actividad.model");
+const actividadModel = require("../models/actividad_models");
 
 const obtenerActividades = async () => {
     const actividades = await actividadModel.obtenerTodas();
@@ -11,8 +11,15 @@ const crearActividad = async (datos) => {
 
     return actividad;
 };
+const actualizarActividad = async (id, datos) => {
+
+    const actividad = await actividadModel.actualizar(id, datos);
+
+    return actividad;
+};
 
 module.exports = {
     obtenerActividades,
-    crearActividad
+    crearActividad,
+    actualizarActividad
 };

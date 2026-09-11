@@ -7,4 +7,6 @@ router.get("/", actividadesController.obtenerActividades);
 
 router.post("/", actividadesController.crearActividad);
 
+router.put("/:id", actividadesController.actualizarActividad);
+
 module.exports = router;

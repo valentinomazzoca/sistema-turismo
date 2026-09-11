@@ -12,10 +12,10 @@ app.get("/api/saludo", (req, res) => {
         mensaje: "API Turismo System funcionando correctamente"
     });
 });
-app.post("/api/actividades", async (req, res) => {
+app.post("/api/actividad", async (req, res) => {
     const { nombre, descripcion, precio } = req.body;
     try {
-        const query = "INSERT INTO actividades (nombre, descripcion, precio) VALUES ($1, $2, $3) RETURNING *";
+        const query = "INSERT INTO Actividad (nombre, descripcion, precio) VALUES ($1, $2, $3) RETURNING *";
         const values = [nombre, descripcion, precio];
         const result = await pool.query(query, values);
         const nuevaActividad = result.rows[0];

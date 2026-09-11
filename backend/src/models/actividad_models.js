@@ -44,8 +44,45 @@ const crear = async ({
 
     return resultado.rows[0];
 };
+const actualizar = async (
+    id,
+    {
+        nombre,
+        descripcion,
+        duracion,
+        precio_base,
+        requiere_peso,
+        requiere_altura
+    }
+) => {
+
+    const resultado = await pool.query(
+        `UPDATE actividad
+        SET
+            nombre = $1,
+            descripcion = $2,
+            duracion = $3,
+            precio_base = $4,
+            requiere_peso = $5,
+            requiere_altura = $6
+        WHERE id = $7
+         RETURNING *`,
+        [
+            nombre,
+            descripcion,
+            duracion,
+            precio_base,
+            requiere_peso,
+            requiere_altura,
+            id
+        ]
+    );
+
+    return resultado.rows[0];
+};
 
 module.exports = {
     obtenerTodas,
-    crear
+    crear,
+    actualizar
 };
