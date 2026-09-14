@@ -60,8 +60,38 @@ const actualizarActividad = async (req, res) => {
         });
     }
 };
+const desactivarActividad = async (req, res) => {
+
+    try {
+
+        const id = req.params.id;
+
+        const actividad =
+            await actividadService.desactivarActividad(id);
+
+        if (!actividad) {
+            return res.status(404).json({
+                error: "Actividad no encontrada"
+            });
+        }
+
+        res.json({
+            mensaje: "Actividad desactivada correctamente",
+            actividad
+        });
+
+    } catch (error) {
+    console.error("ERROR AL DESACTIVAR ACTIVIDAD:");
+    console.error(error);
+
+    res.status(500).json({
+        error: error.message
+    });
+}
+};
 module.exports = {
     obtenerActividades,
     crearActividad,
-    actualizarActividad
+    actualizarActividad,
+    desactivarActividad
 };

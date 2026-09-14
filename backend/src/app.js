@@ -3,6 +3,7 @@ const cors = require("cors");
 const pool = require("./config/database");
 const app = express();
 const actividadesRoutes = require("./routes/actividades_routes");
+const reservasRoutes = require("./routes/reserva_routes");
 
 app.use(cors());
 app.use(express.json());
@@ -27,4 +28,5 @@ app.post("/api/actividad", async (req, res) => {
     }
 });
 app.use("/api/actividades", actividadesRoutes);
+app.use("/api/reservas", reservasRoutes);
 module.exports = app;

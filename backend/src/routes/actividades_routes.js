@@ -9,4 +9,6 @@ router.post("/", actividadesController.crearActividad);
 
 router.put("/:id", actividadesController.actualizarActividad);
 
+router.delete("/:id", actividadesController.desactivarActividad);
+
 module.exports = router;

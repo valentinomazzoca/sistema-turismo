@@ -80,9 +80,22 @@ const actualizar = async (
 
     return resultado.rows[0];
 };
+const desactivar = async (id) => {
+
+    const resultado = await pool.query(
+        `UPDATE actividad
+        SET estado = 'inactiva'
+        WHERE id = $1
+        RETURNING *`,
+        [id]
+    );
+
+    return resultado.rows[0];
+};
 
 module.exports = {
     obtenerTodas,
     crear,
-    actualizar
+    actualizar,
+    desactivar
 };
