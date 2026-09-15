@@ -4,18 +4,19 @@ const crearReserva = async (req, res) => {
 
     try {
 
-        const reserva = await reservaService.crearReserva(req.body);
+        const resultado =
+            await reservaService.crearReservaCompleta(req.body);
 
         res.status(201).json({
             mensaje: "Reserva creada correctamente",
-            reserva
+            ...resultado
         });
 
     } catch (error) {
 
         console.error("Error al crear reserva:", error);
 
-        res.status(500).json({
+        res.status(400).json({
             error: error.message
         });
     }
