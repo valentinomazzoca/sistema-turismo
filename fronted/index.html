@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas turísticas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="contenedor">
+        <h1>Nueva reserva</h1>
+
+        <form id="reservaForm">
+            <label>
+                Empresa ID
+                <input type="number" id="empresa_id" value="1" required>
+            </label>
+
+            <label>
+                Cliente ID
+                <input type="number" id="cliente_id" value="1" required>
+            </label>
+
+            <h2>Pasajero</h2>
+
+            <label>
+                Nombre
+                <input type="text" id="nombre" required>
+            </label>
+
+            <label>
+                Apellido
+                <input type="text" id="apellido" required>
+            </label>
+
+            <label>
+                DNI
+                <input type="text" id="dni">
+            </label>
+
+            <h2>Servicio</h2>
+
+            <label>
+                Salida ID
+                <input type="number" id="salida_id" value="1" required>
+            </label>
+
+            <label>
+                Cantidad
+                <input type="number" id="cantidad" value="1" min="1" required>
+            </label>
+
+            <label>
+                Precio
+                <input type="number" id="precio" value="50000" min="0" required>
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" id="requiere_transfer">
+                Requiere transfer
+            </label>
+
+            <label>
+                Observaciones
+                <textarea id="observaciones"></textarea>
+            </label>
+
+            <button type="submit">Crear reserva</button>
+        </form>
+
+        <p id="mensaje"></p>
+
+        <hr>
+
+        <h2>Consultar reserva</h2>
+
+        <div class="consulta">
+            <input type="number" id="reservaId" placeholder="ID de reserva">
+            <button id="consultarBtn">Consultar</button>
+            <button id="cancelarBtn">Cancelar</button>
+        </div>
+
+        <pre id="resultado"></pre>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

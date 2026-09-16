@@ -3,8 +3,8 @@ const pool = require("../config/database");
 const obtenerTodos = async () => {
     const resultado = await pool.query(
         `SELECT *
-         FROM cliente
-         ORDER BY id DESC`
+        FROM cliente
+        ORDER BY id DESC`
     );
 
     return resultado.rows;
@@ -13,8 +13,8 @@ const obtenerTodos = async () => {
 const obtenerPorId = async (id) => {
     const resultado = await pool.query(
         `SELECT *
-         FROM cliente
-         WHERE id = $1`,
+        FROM cliente
+        WHERE id = $1`,
         [id]
     );
 
@@ -66,13 +66,13 @@ const actualizar = async (id, datos) => {
 
     const resultado = await pool.query(
         `UPDATE cliente
-         SET
+        SET
             nombre = $1,
             apellido = $2,
             telefono = $3,
             email = $4,
             observaciones = $5
-         WHERE id = $6
+        WHERE id = $6
          RETURNING *`,
         [
             nombre,

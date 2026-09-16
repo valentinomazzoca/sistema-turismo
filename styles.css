@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f2f5f8;
+    font-family: Arial, sans-serif;
+    color: #222;
+}
+
+.contenedor {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px #0002;
+}
+
+h1 {
+    color: #1769aa;
+}
+
+h2 {
+    margin-top: 25px;
+    color: #444;
+}
+
+label {
+    display: block;
+    margin: 12px 0;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+textarea {
+    min-height: 80px;
+}
+
+.checkbox {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.checkbox input {
+    width: auto;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 5px;
+    background: #1769aa;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0d4775;
+}
+
+.consulta {
+    display: flex;
+    gap: 8px;
+}
+
+.consulta input {
+    margin: 0;
+}
+
+.exito {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+pre {
+    padding: 15px;
+    overflow-x: auto;
+    background: #f1f1f1;
+}

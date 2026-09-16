@@ -1,9 +1,6 @@
 const reservaModel = require("../models/reserva_model");
 
 const crearReservaCompleta = async (datos) => {
-
-    // Validaciones básicas
-
     if (!datos.empresa_id) {
         throw new Error("La empresa es obligatoria");
     }
@@ -20,45 +17,71 @@ const crearReservaCompleta = async (datos) => {
         throw new Error("La reserva debe tener al menos un servicio");
     }
 
-    // Validar pasajeros
-
     for (const pasajero of datos.pasajeros) {
-
-        if (!pasajero.nombre || pasajero.nombre.trim() === "") {
+        if (!pasajero.nombre?.trim()) {
             throw new Error("El nombre del pasajero es obligatorio");
         }
 
-        if (!pasajero.apellido || pasajero.apellido.trim() === "") {
+        if (!pasajero.apellido?.trim()) {
             throw new Error("El apellido del pasajero es obligatorio");
         }
     }
 
-    // Validar servicios
-
     for (const servicio of datos.servicios) {
-
         if (!servicio.salida_id) {
             throw new Error("El servicio debe tener una salida");
         }
 
-        if (!servicio.cantidad || servicio.cantidad <= 0) {
-            throw new Error("La cantidad del servicio debe ser mayor a 0");
+        if (
+    !Number.isInteger(Number(servicio.cantidad)) ||
+    Number(servicio.cantidad) <= 0
+) { 
+            throw new Error("La cantidad debe ser mayor a 0");
         }
 
         if (typeof servicio.requiere_transfer !== "boolean") {
-            throw new Error(
-                "requiere_transfer debe ser true o false"
-            );
+            throw new Error("requiere_transfer debe ser true o false");
         }
 
-        if (servicio.precio === undefined || servicio.precio < 0) {
+        if (
+    servicio.precio === undefined ||
+    !Number.isFinite(Number(servicio.precio)) ||
+    Number(servicio.precio) < 0
+) {
             throw new Error("El precio no puede ser negativo");
         }
     }
 
-    return await reservaModel.crearReservaCompleta(datos);
+    return reservaModel.crearReservaCompleta(datos);
+};
+
+const obtenerReserva = async (id) => {
+    if (!Number.isInteger(Number(id)) || Number(id) <= 0) {
+        throw new Error("El ID de reserva no es válido");
+    }
+
+    return reservaModel.obtenerReserva(Number(id));
+};
+const cancelarReserva = async (id) => {
+    if (!Number.isInteger(Number(id)) || Number(id) <= 0) {
+        throw new Error("El ID de reserva no es válido");
+    }
+
+    const resultado = await reservaModel.cancelarReserva(Number(id));
+
+    if (!resultado) {
+        throw new Error("Reserva no encontrada");
+    }
+
+    if (resultado.yaCancelada) {
+        throw new Error("La reserva ya está cancelada");
+    }
+
+    return resultado.reserva;
 };
 
 module.exports = {
-    crearReservaCompleta
+    crearReservaCompleta,
+    obtenerReserva,
+    cancelarReserva
 };
