@@ -29,6 +29,7 @@ for (const [salidaId, solicitados] of cuposSolicitados) {
     const salidaResult = await client.query(
         `SELECT
             s.id,
+            s.estado,
             s.capacidad_total,
             s.capacidad_transfer,
             COALESCE(SUM(rs.cantidad), 0) AS usados,
@@ -49,7 +50,7 @@ for (const [salidaId, solicitados] of cuposSolicitados) {
             ON r.id = rs.reserva_id
             AND r.estado <> 'cancelada'
         WHERE s.id = $1
-        GROUP BY s.id`,
+        GROUP BY s.id, s.estado`,
         [salidaId]
     );
 

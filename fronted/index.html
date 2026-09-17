@@ -4,85 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservas turísticas</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <main class="contenedor">
-        <h1>Nueva reserva</h1>
+        <header class="cabecera">
+            <div>
+                <p class="eyebrow">Sistema turismo</p>
+                <h1>Nueva reserva</h1>
+            </div>
+            <span class="badge">API conectada</span>
+        </header>
 
-        <form id="reservaForm">
-            <label>
-                Empresa ID
-                <input type="number" id="empresa_id" value="1" required>
-            </label>
+        <section class="panel">
+            <form id="reservaForm" class="formulario">
+                <div class="grid-2">
+                    <label>
+                        Empresa ID
+                        <input type="number" id="empresa_id" value="1" required>
+                    </label>
 
-            <label>
-                Cliente ID
-                <input type="number" id="cliente_id" value="1" required>
-            </label>
+                    <label>
+                        Cliente ID
+                        <input type="number" id="cliente_id" value="1" required>
+                    </label>
+                </div>
 
-            <h2>Pasajero</h2>
+                <h2>Pasajero</h2>
 
-            <label>
-                Nombre
-                <input type="text" id="nombre" required>
-            </label>
+                <div class="grid-2">
+                    <label>
+                        Nombre
+                        <input type="text" id="nombre" required>
+                    </label>
 
-            <label>
-                Apellido
-                <input type="text" id="apellido" required>
-            </label>
+                    <label>
+                        Apellido
+                        <input type="text" id="apellido" required>
+                    </label>
+                </div>
 
-            <label>
-                DNI
-                <input type="text" id="dni">
-            </label>
+                <label>
+                    DNI
+                    <input type="text" id="dni">
+                </label>
 
-            <h2>Servicio</h2>
+                <h2>Servicio</h2>
 
-            <label>
-                Salida ID
-                <input type="number" id="salida_id" value="1" required>
-            </label>
+                <div class="grid-2">
+                    <label>
+                        Salida ID
+                        <input type="number" id="salida_id" value="1" required>
+                    </label>
 
-            <label>
-                Cantidad
-                <input type="number" id="cantidad" value="1" min="1" required>
-            </label>
+                    <label>
+                        Cantidad
+                        <input type="number" id="cantidad" value="1" min="1" required>
+                    </label>
+                </div>
 
-            <label>
-                Precio
-                <input type="number" id="precio" value="50000" min="0" required>
-            </label>
+                <label>
+                    Precio
+                    <input type="number" id="precio" value="50000" min="0" required>
+                </label>
 
-            <label class="checkbox">
-                <input type="checkbox" id="requiere_transfer">
-                Requiere transfer
-            </label>
+                <label class="checkbox">
+                    <input type="checkbox" id="requiere_transfer">
+                    Requiere transfer
+                </label>
 
-            <label>
-                Observaciones
-                <textarea id="observaciones"></textarea>
-            </label>
+                <label>
+                    Observaciones
+                    <textarea id="observaciones"></textarea>
+                </label>
 
-            <button type="submit">Crear reserva</button>
-        </form>
+                <div class="acciones">
+                    <button type="submit">Crear reserva</button>
+                </div>
+            </form>
 
-        <p id="mensaje"></p>
+            <p id="mensaje" class="mensaje"></p>
+        </section>
 
-        <hr>
+        <section class="panel">
+            <h2>Consultar reserva</h2>
+            <div class="consulta">
+                <input type="number" id="reservaId" placeholder="ID de reserva">
+                <button id="consultarBtn" class="secondary">Consultar</button>
+                <button id="cancelarBtn" class="secondary danger">Cancelar</button>
+            </div>
 
-        <h2>Consultar reserva</h2>
+            <pre id="resultado"></pre>
+        </section>
 
-        <div class="consulta">
-            <input type="number" id="reservaId" placeholder="ID de reserva">
-            <button id="consultarBtn">Consultar</button>
-            <button id="cancelarBtn">Cancelar</button>
-        </div>
+        <section class="panel">
+            <h2>Catálogo</h2>
+            <div id="catalogo" class="cards"></div>
+        </section>
 
-        <pre id="resultado"></pre>
+        <section class="panel">
+            <h2>Clientes</h2>
+            <div id="clientesLista" class="listado"></div>
+        </section>
     </main>
 
-    <script src="app.js"></script>
+    <script src="../app.js"></script>
 </body>
 </html>

@@ -14,6 +14,15 @@ app.get("/api/saludo", (req, res) => {
         mensaje: "API Turismo System funcionando correctamente"
     });
 });
+
+app.get("/api/health", (req, res) => {
+    res.json({
+        ok: true,
+        service: "backend-turismo",
+        timestamp: new Date().toISOString()
+    });
+});
+
 app.post("/api/actividad", async (req, res) => {
     const { nombre, descripcion, precio } = req.body;
     try {
@@ -28,7 +37,25 @@ app.post("/api/actividad", async (req, res) => {
         res.status(500).json({ mensaje: "Error interno del servidor" });
     }
 });
+
 app.use("/api/actividades", actividadesRoutes);
 app.use("/api/reservas", reservasRoutes);
 app.use("/api/clientes", clientesRoutes);
+
+app.use((req, res) => {
+    res.status(404).json({
+        error: "Ruta no encontrada"
+    });
+});
+
+app.use((err, req, res, next) => {
+    console.error("Unhandled error:", err);
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Error interno del servidor";
+
+    res.status(statusCode).json({
+        error: message
+    });
+});
+
 module.exports = app;
